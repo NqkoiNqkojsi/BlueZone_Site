@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -91,26 +91,34 @@
 </head>
 <body>
 
-<h2>Two Equal Columns</h2>
+    <h2>Two Equal Columns</h2>
 
-<div class="row">
-  <div class="column" style="background-color:#aaa;">
-    <div id="data-box" class="nicebox">
-        <label id="data-label" for="data-value">Име на улица:</label>
-        <span id="data-value"></span>
+    <div class="row">
+        <div class="column" style="background-color:#aaa;">
+            <div id="data-box" class="nicebox">
+                <label id="data-label" for="data-value">Име на улица:</label>
+                <span id="data-value"></span>
+            </div>
+            <div id="map"></div>
+        </div>
+        <div class="column" style="background-color:#bbb;">
+            <select id="sl_ulc">
+                <option
+                    onclick="x='Slivnica'"
+                >
+                Median age
+            </option>>
+        </div>
     </div>
-    <div id="map"></div>
-  </div>
-  <div class="column" style="background-color:#bbb;">
-    <h2>Column 2</h2>
-    <p>Some text..</p>
-  </div>
-</div>
 
 
 <!--JS scrpts -->
 <script
     src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+    async
+></script>
+<script
+    src="JS/REST_request.js"
     async
 ></script>
 
