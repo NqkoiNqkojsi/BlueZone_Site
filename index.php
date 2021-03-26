@@ -101,7 +101,7 @@
             </div>
             <div id="map"></div>
         </div>
-        <div onload="" class="column" style="background-color:#bbb;">
+        <div onload="loadStr()" class="column" style="background-color:#bbb;">
             <select id="sl_ulc">
                 
             </select>
@@ -110,7 +110,8 @@
             </select>
 
             <label id="data-label" for="">Име на улица:</label>
-            <button ></button>
+            <button onclick="loadDoc(x, y, z, false)"></button>
+            <span id="smpl_res"></span>
         </div>
     </div>
 
@@ -122,6 +123,10 @@
 ></script>
 <script
     src="JS/REST_request.js"
+    async
+></script>
+<script
+    src="JS/Slid_adr.js"
     async
 ></script>
 
