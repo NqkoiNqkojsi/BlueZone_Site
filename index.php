@@ -63,7 +63,6 @@
 }
 </style>
 <script>
-    /*
     let map;
 
     function initMap() {
@@ -89,7 +88,7 @@
             'elementType': 'geometry',
             'stylers': [{'visibility': 'on'}, {'hue': '#5f94ff'}, {'lightness': 60}]
         }];
-    }*/
+    }
 </script>
 </head>
 <body>
@@ -119,11 +118,10 @@
 
 
 <!--JS scrpts -->
-<!--
 <script
     src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
     async
-></script>-->
+></script>
 <script
     src="JS/REST_request.js"
     async
