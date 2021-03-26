@@ -101,13 +101,16 @@
             </div>
             <div id="map"></div>
         </div>
-        <div class="column" style="background-color:#bbb;">
+        <div onload="" class="column" style="background-color:#bbb;">
             <select id="sl_ulc">
-                <option
-                    onclick="x='Slivnica'"
-                >
-                Median age
-            </option>>
+                
+            </select>
+            <select id="sl_adr">
+                
+            </select>
+
+            <label id="data-label" for="">Име на улица:</label>
+            <button ></button>
         </div>
     </div>
 
