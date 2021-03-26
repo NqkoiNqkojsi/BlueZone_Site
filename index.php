@@ -71,6 +71,10 @@
             zoom: 16,
         });
 
+        const Sl1 = { lat: -25.344, lng: 131.036 };
+        const Al2 = { lat: -25.344, lng: 131.036 };
+        const BB = { lat: -25.344, lng: 131.036 };
+
         var mapStyle = [{
             'featureType': 'all',
             'elementType': 'all',
@@ -124,15 +128,12 @@
 ></script>
 <script
     src="JS/REST_request.js"
-    async
 ></script>
 <script
     src="JS/Slid_adr.js"
-    async
 ></script>
 <script
     src="JS/REST_upd.js"
-    async
 ></script>
 
 </body>
