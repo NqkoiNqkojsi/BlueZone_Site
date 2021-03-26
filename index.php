@@ -14,7 +14,7 @@
   float: left;
   width: 50%;
   padding: 10px;
-  height: 80%; /* Should be removed. Only for demonstration */
+  height: 600px; /* Should be removed. Only for demonstration */
 }
 
 /* Clear floats after the columns */
@@ -62,6 +62,19 @@ body,
   display: none;
   font-size: 14px;
   width: 14px;
+}
+
+.nicebox {
+    position: absolute;
+    text-align: center;
+    font-family: "Roboto", "Arial", sans-serif;
+    font-size: 13px;
+    z-index: 5;
+    box-shadow: 0 4px 6px -4px #333;
+    padding: 5px 10px;
+    background: white;
+    background: linear-gradient(to bottom, white 0%, whitesmoke 100%);
+    border: #e5e5e5 1px solid;
 }
 </style>
 <script>
