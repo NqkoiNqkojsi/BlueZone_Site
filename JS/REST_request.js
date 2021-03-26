@@ -1,6 +1,7 @@
 var x = "";
 var y = "";
 var z = "";
+var Update = false;
 var res_id="";
 function loadDoc(street, address_start, addres_end, wh) {
     if (wh == true) {
@@ -16,9 +17,9 @@ function loadDoc(street, address_start, addres_end, wh) {
             var sum = 0;
             var i = 0;
             for (i; i < jsonObj.br; i++) {
-                sum = sum + jsonObj.str;
+                sum = sum + jsonObj.space;
             }
-            document.getElementById(res_id).innerHTML = jsonObj.space;
+            document.getElementById(res_id).innerHTML = sum;
         }
     };
     xhttp.open("GET", "" + "?str=" + street + "&adr="+address, true);

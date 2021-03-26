@@ -1,1 +1,56 @@
+* {
+    box-sizing: border-box;
+}
 
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Map */
+#map {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#data-box {
+    top: 10px;
+    left: 500px;
+    height: 45px;
+    line-height: 45px;
+    display: none;
+}
+
+#data-value {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#data-label {
+    font-size: 2em;
+    font-weight: normal;
+    padding-right: 10px;
+}
+
+    #data-label:after {
+        content: ":";
+    }
+
+#data-caret {
+    margin-left: -5px;
+    display: none;
+    font-size: 14px;
+    width: 14px;
+}
