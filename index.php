@@ -25,6 +25,8 @@
 }
 
 /* Map */
+html,
+body,
 #map {
   height: 100%;
   margin: 0;
