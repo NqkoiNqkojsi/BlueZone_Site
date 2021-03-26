@@ -2,6 +2,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="CSS/index.css">
+<link rel="stylesheet" href="CSS/Sc_form.css">
 <style>
 * {
   box-sizing: border-box;
@@ -61,6 +63,7 @@
 }
 </style>
 <script>
+    /*
     let map;
 
     function initMap() {
@@ -86,7 +89,7 @@
             'elementType': 'geometry',
             'stylers': [{'visibility': 'on'}, {'hue': '#5f94ff'}, {'lightness': 60}]
         }];
-    }
+    }*/
 </script>
 </head>
 <body>
@@ -102,31 +105,35 @@
             <div id="map"></div>
         </div>
         <div onload="loadStr()" class="column" style="background-color:#bbb;">
-            <select id="sl_ulc">
+            <select class="sl" id="sl_ulc">
                 
             </select>
-            <select id="sl_adr">
+            <select class="sl" id="sl_adr">
                 
             </select>
 
-            <label id="data-label" for="">Име на улица:</label>
-            <button onclick="loadDoc(x, y, z, false)"></button>
+            <button class="button" onclick="loadDoc(x, y, z, false)"> vig</button>
             <span id="smpl_res"></span>
         </div>
     </div>
 
 
 <!--JS scrpts -->
+<!--
 <script
     src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
     async
-></script>
+></script>-->
 <script
     src="JS/REST_request.js"
     async
 ></script>
 <script
     src="JS/Slid_adr.js"
+    async
+></script>
+<script
+    src="JS/REST_upd.js"
     async
 ></script>
 
