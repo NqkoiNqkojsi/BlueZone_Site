@@ -81,7 +81,7 @@ body,
 </head>
 <body>
 
-    <h2>Two Equal Columns</h2>
+    <h2>Намиране на парко място</h2>
 
     <div class="row">
         <div class="column" style="background-color:#aaa;">
@@ -107,6 +107,8 @@ body,
 
 <!--JS scrpts -->
 <script>
+console.log(data2)
+//Load the markers
 var br_mrk = 0;
 var mrk = new Array();
 var i = 0, j = 0, k = 0;
@@ -234,7 +236,7 @@ function loadAdr(street) {
     }
 }
 
-
+//Load the Street
 var sum = 0;
 var i = 0, j = 0;
 for (i; i < data2.streets.lenght; i++) {
