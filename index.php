@@ -108,15 +108,15 @@ body,
 <!--JS scrpts -->
 <script>
 console.log(data2)
-console.log(data2.streets[0].bound.lenght);
+console.log(data2.streets[0].bound.length);
 //Load the markers
 var br_mrk = 0;
 var mrk = new Array();
 var i = 0, j = 0, k = 0;
 console.log(br_mrk);
-for (i = 0; i < data2.streets.lenght; i++) {
-    for (j = 0; j < data2.streets[i].bound.lenght; j++) {
-        mrk[j] = { lat: data2.streets[i].bound.marker[0], lng: data2.streets[i].bound.marker[1] };
+for (street in data2.streets) {
+    for (bound in street.bound) {
+        mrk[j] = { lat: bound.marker[0], lng: bound.marker[1] };
         br_mrk=br_mrk+1;
     }    
 }
@@ -127,22 +127,16 @@ var Update = false;
 var res_id="";
 function loadDoc1(adr_start, adr_end) {
     var street = "";
-    console.log(MrkObj);
-    var i = 0, j = 0, k = 0;
-    br_mrk = MrkObj.streets[i].bound.lenght;
-    console.log(br_mrk);
-    for (i = 0; i < MrkObj.streets.lenght; i++) {
-        for (j = 0; j < MrkObj.streets[i].bound.lenght; j++) {
-            if (adr_start == MrkObj.streets[i].bound.marker[0]) {
-                if (adr_end == MrkObj.streets[i].bound.marker[1]) {
-                    street = MrkObj.streets[i].name;
+    for (street1 in data2.streets) {
+        for (bound in street1.bound) {
+            if (adr_start == bound.marker[0]) {
+                if (adr_end == bound.marker[1]) {
+                    street = streets1.name;
                     console.log(street);
                 }
             }
         }
     }
-    xhttp.open("GET", "JSON/streets.json", true);
-    xhttp.send();
 
 
     res_id = "data-value";
@@ -192,13 +186,24 @@ function loadDoc2(street, adr_start, adr_end) {
         });
 
         var i=0;
-        for(i=0;i<br_mrk;i++){
+        var mrk_map;
+        /*for(i=0;i<br_mrk;i++){
             // Add a marker at the center of the map.
-            var mrk_map=addMarker(mrk[i], map);
+            mrk_map=addMarker(mrk[i], map);
             google.maps.event.addListener(mrk_map, "click", (event) => {
-                loadDoc();
+                loadDoc1(mrk[i].lat, mrk[i].lng);
             });
-        }
+        }*/
+        mrk_map=addMarker(lat: 42.497897, lng: 27.474230, map);
+        google.maps.event.addListener(mrk_map, "click", (event) => {
+            loadDoc1(42.497897, 27.474230);
+        });
+
+        mrk_map=addMarker(lat: 42.498452, lng: 27.475315, map);
+        google.maps.event.addListener(mrk_map, "click", (event) => {
+            loadDoc1(42.498452, 27.475315);
+        });
+
 
         var mapStyle = [{
             'featureType': 'all',
@@ -223,11 +228,11 @@ function loadAdr(street) {
     x = street;
     var sum = 0;
     var i = 0, j=0;
-    for (i; i < data2.streets.lenght; i++) {
-        for (j; j < data2.streets[i].bound.lenght; j++) {
+    for (street1 in data2.streets) {
+        for (bound in street1.bound) {
             var opt = document.createElement("option");
-            var node = document.createTextNode("От " + data2.streets[i].bound[j].start + " до " + data2.streets[i].bound[j].end);
-            var node1 = para.addEventListener("click", "x=" + data2.streets[i].bound[j].start + "y=" + data2.streets[i].bound[j].end)
+            var node = document.createTextNode("От " + bound.start + " до " + bound.end);
+            var node1 = para.addEventListener("click", "x=" + bound.start + "y=" + bound.end)
             para.appendChild(node);
 
             var element = document.getElementById("sl_adr");
@@ -239,10 +244,10 @@ function loadAdr(street) {
 //Load the Street
 var sum = 0;
 var i = 0, j = 0;
-for (i; i < data2.streets.lenght; i++) {
+for (street in data2.streets) {
     var opt = document.createElement("option");
-    var node = document.createTextNode("Ул. " + data2.streets[i].name);
-    var node1 = para.addEventListener("click", "loadAdr('" + data2.streets[i].name+"')")
+    var node = document.createTextNode("Ул. " + street.name);
+    var node1 = para.addEventListener("click", "loadAdr('" + street.name+"')")
     para.appendChild(node);
 
     var element = document.getElementById("sl_ulc");
