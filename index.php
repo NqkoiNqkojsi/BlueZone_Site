@@ -99,8 +99,10 @@ body,
                 
             </select>
 
-            <button class="button" onclick="loadDoc2(x, y, z)"> vig</button>
-            <h3 id="smpl_res"></h3>
+            <button class="button" onclick="loadDoc2(x, y, z)"> Виж</button>
+            <h3>Улица:<span id="smpl_res1"></span></h3>
+            <h3>Между:<span id="smpl_res2"></span> и <span id="smpl_res3"></span></h3>
+            <h3>Места:<span id="smpl_res4"></span></h3>
         </div>
     </div>
 
@@ -132,6 +134,9 @@ function loadDoc1(adr_start, adr_end) {
             if (adr_start == bound.marker[0]) {
                 if (adr_end == bound.marker[1]) {
                     street = streets1.name;
+                    document.getElementById("smpl_res1").innerHTML =street;
+                    document.getElementById("smpl_res2").innerHTML = bound.start;
+                    document.getElementById("smpl_res3").innerHTML = bound.end;
                     console.log(street);
                 }
             }
@@ -149,7 +154,7 @@ function loadDoc1(adr_start, adr_end) {
             for (i; i < jsonObj.br; i++) {
                 sum = sum + jsonObj.space;
             }
-            document.getElementById(res_id).innerHTML = sum;
+            document.getElementById("smpl_res4").innerHTML = sum;
         }
     };
     xhttp.open("GET", "" + "?str=" + street + "&adr_st=" + adr_start + "&adr_end" + adr_end, true);
@@ -159,7 +164,9 @@ function loadDoc1(adr_start, adr_end) {
 
 function loadDoc2(street, adr_start, adr_end) {
 
-    res_id = "data-value";
+    document.getElementById("smpl_res1").innerHTML =street;
+    document.getElementById("smpl_res2").innerHTML = adr_str;
+    document.getElementById("smpl_res3").innerHTML = adr_str;
     var xhttp;
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -170,7 +177,7 @@ function loadDoc2(street, adr_start, adr_end) {
             for (i; i < jsonObj.br; i++) {
                 sum = sum + jsonObj.space;
             }
-            document.getElementById(res_id).innerHTML = sum;
+            document.getElementById("smpl_res4").innerHTML = sum;
         }
     };
     xhttp.open("GET", "" + "?str=" + street + "&adr_st=" + adr_start + "&adr_end" + adr_end, true);
