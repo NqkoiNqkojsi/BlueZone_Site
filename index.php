@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="CSS/index.css">
 <link rel="stylesheet" href="CSS/Sc_form.css">
+<script type="text/javascript" src="data.json"></script>
 <style>
 * {
   box-sizing: border-box;
@@ -82,27 +83,13 @@ body,
 >
 var br_mrk = 0;
 var mrk = new Array();
-
-function loadMrk() {
-    var xhttp;
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var MrkObj = JSON.parse(this.responseText);
-            console.log(MrkObj);
-            var sum = 0;
-            var i = 0, j = 0, k = 0;
-            br_mrk = MrkObj.streets[i].bound.lenght;
-            console.log(br_mrk);
-            for (i=0; i < MrkObj.streets.lenght; i++) {
-                for (j=0; j < MrkObj.streets[i].bound.lenght; j++) {
-                    mrk[j] = { lat: MrkObj.streets[i].bound.marker[0], lng: MrkObj.streets[i].bound.marker[1] };
-                }    
-            }
-        }
-    };
-    xhttp.open("GET", "JSON/streets.json", true);
-    xhttp.send();
+var i = 0, j = 0, k = 0;
+br_mrk = data2.streets[i].bound.lenght;
+console.log(br_mrk);
+for (i = 0; i < data2.streets.lenght; i++) {
+    for (j = 0; j < data2.streets[i].bound.lenght; j++) {
+        mrk[j] = { lat: data2.streets[i].bound.marker[0], lng: data2.streets[i].bound.marker[1] };
+    }    
 }
 </script>
 <script
@@ -115,27 +102,20 @@ var Update = false;
 var res_id="";
 function loadDoc1(adr_start, adr_end) {
     var street = "";
-    var xhttp;
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var MrkObj = JSON.parse(this.responseText);
-            console.log(MrkObj);
-            var i = 0, j = 0, k = 0;
-            br_mrk = MrkObj.streets[i].bound.lenght;
-            console.log(br_mrk);
-            for (i = 0; i < MrkObj.streets.lenght; i++) {
-                for (j = 0; j < MrkObj.streets[i].bound.lenght; j++) {
-                    if (adr_start == MrkObj.streets[i].bound.marker[0]) {
-                        if (adr_end == MrkObj.streets[i].bound.marker[1]) {
-                            street = MrkObj.streets[i].name;
-                            console.log(street);
-                        }
-                    }
+    console.log(MrkObj);
+    var i = 0, j = 0, k = 0;
+    br_mrk = MrkObj.streets[i].bound.lenght;
+    console.log(br_mrk);
+    for (i = 0; i < MrkObj.streets.lenght; i++) {
+        for (j = 0; j < MrkObj.streets[i].bound.lenght; j++) {
+            if (adr_start == MrkObj.streets[i].bound.marker[0]) {
+                if (adr_end == MrkObj.streets[i].bound.marker[1]) {
+                    street = MrkObj.streets[i].name;
+                    console.log(street);
                 }
             }
         }
-    };
+    }
     xhttp.open("GET", "JSON/streets.json", true);
     xhttp.send();
 
@@ -253,51 +233,32 @@ function loadDoc2(street, adr_start, adr_end) {
 >
 function loadAdr(street) {
     x = street;
-    var xhttp;
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var StrObj = JSON.parse(this.responseText);
-            var sum = 0;
-            var i = 0, j=0;
-            for (i; i < StrObj.streets.lenght; i++) {
-                for (j; j < StrObj.streets[i].bound.lenght; j++) {
-                    var opt = document.createElement("option");
-                    var node = document.createTextNode("От " + StrObj.streets[i].bound[j].start + " до " + StrObj.streets[i].bound[j].end);
-                    var node1 = para.addEventListener("click", "x=" + StrObj.streets[i].bound[j].start + "y=" + StrObj.streets[i].bound[j].end)
-                    para.appendChild(node);
+    var sum = 0;
+    var i = 0, j=0;
+    for (i; i < data2.streets.lenght; i++) {
+        for (j; j < data2.streets[i].bound.lenght; j++) {
+            var opt = document.createElement("option");
+            var node = document.createTextNode("От " + data2.streets[i].bound[j].start + " до " + data2.streets[i].bound[j].end);
+            var node1 = para.addEventListener("click", "x=" + data2.streets[i].bound[j].start + "y=" + data2.streets[i].bound[j].end)
+            para.appendChild(node);
 
-                    var element = document.getElementById("sl_adr");
-                    element.appendChild(para);
-                }
-            }
+            var element = document.getElementById("sl_adr");
+            element.appendChild(para);
         }
-    };
-    xhttp.open("GET", "JSON/streets.json", true);
-    xhttp.send();
+    }
 }
 
-function loadStr() {
-    var xhttp;
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var StrObj = JSON.parse(this.responseText);
-            var sum = 0;
-            var i = 0, j = 0;
-            for (i; i < StrObj.streets.lenght; i++) {
-                var opt = document.createElement("option");
-                var node = document.createTextNode("Ул. " + StrObj.streets[i].name);
-                var node1 = para.addEventListener("click", "loadAdr('" + StrObj.streets[i].name+"')")
-                para.appendChild(node);
 
-                var element = document.getElementById("sl_ulc");
-                element.appendChild(para);
-            }
-        }
-    };
-    xhttp.open("GET", "JSON/streets.json", true);
-    xhttp.send();
+var sum = 0;
+var i = 0, j = 0;
+for (i; i < StrObj.streets.lenght; i++) {
+    var opt = document.createElement("option");
+    var node = document.createTextNode("Ул. " + StrObj.streets[i].name);
+    var node1 = para.addEventListener("click", "loadAdr('" + StrObj.streets[i].name+"')")
+    para.appendChild(node);
+
+    var element = document.getElementById("sl_ulc");
+    element.appendChild(para);
 }
 </script>
 <script
