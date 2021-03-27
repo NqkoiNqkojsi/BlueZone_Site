@@ -39,7 +39,7 @@ body,
   left: 500px;
   height: 45px;
   line-height: 45px;
-  display: none;
+  display: block;
 }
 
 #data-value {
@@ -59,7 +59,7 @@ body,
 
 #data-caret {
   margin-left: -5px;
-  display: none;
+  display: block;
   font-size: 14px;
   width: 14px;
 }
