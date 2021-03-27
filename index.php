@@ -78,9 +78,35 @@ body,
     border: #e5e5e5 1px solid;
 }
 </style>
-<script
-    
->
+</head>
+<body>
+
+    <h2>Two Equal Columns</h2>
+
+    <div class="row">
+        <div class="column" style="background-color:#aaa;">
+            <div id="data-box" class="nicebox">
+                <label id="data-label" for="data-value">Име на улица:</label>
+                <span id="data-value"></span>
+            </div>
+            <div id="map"></div>
+        </div>
+        <div onload="loadStr()" class="column" style="background-color:#bbb;">
+            <select class="sl" id="sl_ulc">
+                
+            </select>
+            <select class="sl" id="sl_adr">
+                
+            </select>
+
+            <button class="button" onclick="loadDoc2(x, y, z)"> vig</button>
+            <h3 id="smpl_res"></h3>
+        </div>
+    </div>
+
+
+<!--JS scrpts -->
+<script>
 var br_mrk = 0;
 var mrk = new Array();
 var i = 0, j = 0, k = 0;
@@ -91,10 +117,7 @@ for (i = 0; i < data2.streets.lenght; i++) {
         mrk[j] = { lat: data2.streets[i].bound.marker[0], lng: data2.streets[i].bound.marker[1] };
     }    
 }
-</script>
-<script
-     
->
+
 var x = "";
 var y = "";
 var z = "";
@@ -158,8 +181,6 @@ function loadDoc2(street, adr_start, adr_end) {
     xhttp.send();
 }
 
-</script>
-<script>
     let map;
 
     function initMap() {
@@ -195,42 +216,7 @@ function loadDoc2(street, adr_start, adr_end) {
             'stylers': [{'visibility': 'on'}, {'hue': '#5f94ff'}, {'lightness': 60}]
         }];
     }
-</script>
-</head>
-<body>
 
-    <h2>Two Equal Columns</h2>
-
-    <div class="row">
-        <div class="column" style="background-color:#aaa;">
-            <div id="data-box" class="nicebox">
-                <label id="data-label" for="data-value">Име на улица:</label>
-                <span id="data-value"></span>
-            </div>
-            <div id="map"></div>
-        </div>
-        <div onload="loadStr()" class="column" style="background-color:#bbb;">
-            <select class="sl" id="sl_ulc">
-                
-            </select>
-            <select class="sl" id="sl_adr">
-                
-            </select>
-
-            <button class="button" onclick="loadDoc2(x, y, z)"> vig</button>
-            <h3 id="smpl_res"></h3>
-        </div>
-    </div>
-
-
-<!--JS scrpts -->
-<script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCmpm3iJiQfKu3WoVUxPgxdhub37wsp7s&callback=initMap&libraries=&v=weekly"
-    async
-></script>
-<script
-    
->
 function loadAdr(street) {
     x = street;
     var sum = 0;
@@ -264,7 +250,10 @@ for (i; i < data2.streets.lenght; i++) {
 <script
     src="JS/REST_upd.js"
 ></script>
-
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCmpm3iJiQfKu3WoVUxPgxdhub37wsp7s&callback=initMap&libraries=&v=weekly"
+    async
+></script>
 </body>
 </html>
 
