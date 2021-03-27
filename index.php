@@ -108,7 +108,7 @@ body,
 <!--JS scrpts -->
 <script>
 console.log(data2)
-console.log(data2.streets.length);
+console.log(data2.streets[0].name);
 //Load the markers
 var br_mrk = 0;
 var mrk = new Array();
