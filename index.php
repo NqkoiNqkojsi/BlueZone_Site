@@ -251,10 +251,10 @@ function loadAdr(street) {
 
 var sum = 0;
 var i = 0, j = 0;
-for (i; i < StrObj.streets.lenght; i++) {
+for (i; i < data2.streets.lenght; i++) {
     var opt = document.createElement("option");
-    var node = document.createTextNode("Ул. " + StrObj.streets[i].name);
-    var node1 = para.addEventListener("click", "loadAdr('" + StrObj.streets[i].name+"')")
+    var node = document.createTextNode("Ул. " + data2.streets[i].name);
+    var node1 = para.addEventListener("click", "loadAdr('" + data2.streets[i].name+"')")
     para.appendChild(node);
 
     var element = document.getElementById("sl_ulc");
