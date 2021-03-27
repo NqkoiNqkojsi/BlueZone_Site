@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="CSS/index.css">
 <link rel="stylesheet" href="CSS/Sc_form.css">
-<script type="text/javascript" src="streets.js"></script>
+<script type="text/javascript" src="JSON/streets.js"></script>
 <style>
 * {
   box-sizing: border-box;
