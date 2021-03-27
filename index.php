@@ -77,6 +77,12 @@ body,
     border: #e5e5e5 1px solid;
 }
 </style>
+<script
+    src="JS/Markers.js"
+></script>
+<script
+    src="JS/REST_request.js"
+></script>
 <script>
     let map;
 
@@ -86,9 +92,14 @@ body,
             zoom: 16,
         });
 
-        const Sl1 = { lat: -25.344, lng: 131.036 };
-        const Al2 = { lat: -25.344, lng: 131.036 };
-        const BB = { lat: -25.344, lng: 131.036 };
+        var i=0;
+        for(i=0;i<br_mrk;i++){
+            // Add a marker at the center of the map.
+            var mrk_map=addMarker(mrk[i], map);
+            google.maps.event.addListener(mrk_map, "click", (event) => {
+                loadDoc();
+            });
+        }
 
         var mapStyle = [{
             'featureType': 'all',
@@ -130,8 +141,8 @@ body,
                 
             </select>
 
-            <button class="button" onclick="loadDoc(x, y, z, false)"> vig</button>
-            <span id="smpl_res"></span>
+            <button class="button" onclick="loadDoc2(x, y, z)"> vig</button>
+            <h3 id="smpl_res"></h3>
         </div>
     </div>
 
@@ -140,9 +151,6 @@ body,
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCmpm3iJiQfKu3WoVUxPgxdhub37wsp7s&callback=initMap&libraries=&v=weekly"
     async
-></script>
-<script
-    src="JS/REST_request.js"
 ></script>
 <script
     src="JS/Slid_adr.js"
