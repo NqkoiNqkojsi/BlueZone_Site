@@ -78,11 +78,107 @@ body,
 }
 </style>
 <script
-    src="JS/Markers.js"
-></script>
+    
+>
+var br_mrk = 0;
+var mrk = new Array();
+
+function loadMrk() {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var MrkObj = JSON.parse(this.responseText);
+            console.log(MrkObj);
+            var sum = 0;
+            var i = 0, j = 0, k = 0;
+            br_mrk = MrkObj.streets[i].bound.lenght;
+            console.log(br_mrk);
+            for (i=0; i < MrkObj.streets.lenght; i++) {
+                for (j=0; j < MrkObj.streets[i].bound.lenght; j++) {
+                    mrk[j] = { lat: MrkObj.streets[i].bound.marker[0], lng: MrkObj.streets[i].bound.marker[1] };
+                }    
+            }
+        }
+    };
+    xhttp.open("GET", "JSON/streets.json", true);
+    xhttp.send();
+}
+</script>
 <script
-    src="JS/REST_request.js"
-></script>
+     
+>
+var x = "";
+var y = "";
+var z = "";
+var Update = false;
+var res_id="";
+function loadDoc1(adr_start, adr_end) {
+    var street = "";
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var MrkObj = JSON.parse(this.responseText);
+            console.log(MrkObj);
+            var i = 0, j = 0, k = 0;
+            br_mrk = MrkObj.streets[i].bound.lenght;
+            console.log(br_mrk);
+            for (i = 0; i < MrkObj.streets.lenght; i++) {
+                for (j = 0; j < MrkObj.streets[i].bound.lenght; j++) {
+                    if (adr_start == MrkObj.streets[i].bound.marker[0]) {
+                        if (adr_end == MrkObj.streets[i].bound.marker[1]) {
+                            street = MrkObj.streets[i].name;
+                            console.log(street);
+                        }
+                    }
+                }
+            }
+        }
+    };
+    xhttp.open("GET", "JSON/streets.json", true);
+    xhttp.send();
+
+
+    res_id = "data-value";
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var jsonObj = JSON.parse(this.responseText);
+            var sum = 0;
+            var i = 0;
+            for (i; i < jsonObj.br; i++) {
+                sum = sum + jsonObj.space;
+            }
+            document.getElementById(res_id).innerHTML = sum;
+        }
+    };
+    xhttp.open("GET", "" + "?str=" + street + "&adr_st=" + adr_start + "&adr_end" + adr_end, true);
+    xhttp.send();
+}
+
+
+function loadDoc2(street, adr_start, adr_end) {
+
+    res_id = "data-value";
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var jsonObj = JSON.parse(this.responseText);
+            var sum = 0;
+            var i = 0;
+            for (i; i < jsonObj.br; i++) {
+                sum = sum + jsonObj.space;
+            }
+            document.getElementById(res_id).innerHTML = sum;
+        }
+    };
+    xhttp.open("GET", "" + "?str=" + street + "&adr_st=" + adr_start + "&adr_end" + adr_end, true);
+    xhttp.send();
+}
+
+</script>
 <script>
     let map;
 
@@ -153,8 +249,57 @@ body,
     async
 ></script>
 <script
-    src="JS/Slid_adr.js"
-></script>
+    
+>
+function loadAdr(street) {
+    x = street;
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var StrObj = JSON.parse(this.responseText);
+            var sum = 0;
+            var i = 0, j=0;
+            for (i; i < StrObj.streets.lenght; i++) {
+                for (j; j < StrObj.streets[i].bound.lenght; j++) {
+                    var opt = document.createElement("option");
+                    var node = document.createTextNode("От " + StrObj.streets[i].bound[j].start + " до " + StrObj.streets[i].bound[j].end);
+                    var node1 = para.addEventListener("click", "x=" + StrObj.streets[i].bound[j].start + "y=" + StrObj.streets[i].bound[j].end)
+                    para.appendChild(node);
+
+                    var element = document.getElementById("sl_adr");
+                    element.appendChild(para);
+                }
+            }
+        }
+    };
+    xhttp.open("GET", "JSON/streets.json", true);
+    xhttp.send();
+}
+
+function loadStr() {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var StrObj = JSON.parse(this.responseText);
+            var sum = 0;
+            var i = 0, j = 0;
+            for (i; i < StrObj.streets.lenght; i++) {
+                var opt = document.createElement("option");
+                var node = document.createTextNode("Ул. " + StrObj.streets[i].name);
+                var node1 = para.addEventListener("click", "loadAdr('" + StrObj.streets[i].name+"')")
+                para.appendChild(node);
+
+                var element = document.getElementById("sl_ulc");
+                element.appendChild(para);
+            }
+        }
+    };
+    xhttp.open("GET", "JSON/streets.json", true);
+    xhttp.send();
+}
+</script>
 <script
     src="JS/REST_upd.js"
 ></script>
