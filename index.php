@@ -108,6 +108,7 @@ body,
 <!--JS scrpts -->
 <script>
 console.log(data2)
+console.log(data2.streets[i].bound.lenght);
 //Load the markers
 var br_mrk = 0;
 var mrk = new Array();
